@@ -25,21 +25,21 @@ Appdoc uses {declarative_autorization}[https://github.com/stffn/declarative_auth
 
 * Basic Usage
 
-  =action_links @user
+  action_links @user
 
 * Include actions
   
-  =action_links @user, :include => [:download]
+  action_links @user, :include => [:download]
   
 * Exclude actions
 
-  =action_links @user, :exclude => [:edit, :destroy]
+  action_links @user, :exclude => [:edit, :destroy]
 
 * Pass in block
 
-  =action_links @user do
-    =link_to "Hello World", dashboard_path
+  action_links @user do
+    link_to "Hello World", dashboard_path
     
 * Namespaced objects
 
-  =action_links [:manage, @product]
+  action_links [:manage, @product]
