@@ -1,0 +1,45 @@
+== Action_Links
+
+Action_Links automatically includes action links (show, edit, destroy) based on the current page and user roles/permissions.
+
+
+== Installation
+
+Action_Links has been tested through Rails 3.0.10.
+
+Add the following to your Gemfile
+ 
+  gem "action_links"
+  
+From the command line
+
+  > bundle install
+  
+
+Appdoc uses {declarative_autorization}[https://github.com/stffn/declarative_authorization] for role based permissions. Otherwise you will have to manually implement the method 
+
+  permitted_to? :show, @user
+
+
+== Usage
+
+* Basic Usage
+
+  =action_links @user
+
+* Include actions
+  
+  =action_links @user, :include => [:download]
+  
+* Exclude actions
+
+  =action_links @user, :exclude => [:edit, :destroy]
+
+* Pass in block
+
+  =action_links @user do
+    =link_to "Hello World", dashboard_path
+    
+* Namespaced objects
+
+  =action_links [:manage, @product]
