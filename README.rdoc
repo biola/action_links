@@ -14,11 +14,6 @@ Add the following to your Gemfile
 From the command line
 
   > bundle install
-  
-
-Appdoc uses {declarative_autorization}[https://github.com/stffn/declarative_authorization] for role based permissions. Otherwise you will have to manually implement the method 
-
-  permitted_to? :show, @user
 
 
 == Usage
