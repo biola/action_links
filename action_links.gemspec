@@ -7,14 +7,12 @@ Gem::Specification.new do |s|
   s.version     = ActionLinks::VERSION
   s.authors     = ["Adam Crownoble", "Ryan Hall"]
   s.email       = ["adam@obledesign.com"]
-  s.homepage    = "https://github.com/halloffame/action_links"
+  s.homepage    = "https://github.com/biola/action_links"
   s.summary     = %q{Quick and painless action links}
   s.description = %q{Automatically includes action links (show, edit, destroy) based on the current page and user roles/permissions}
 
   s.rubyforge_project = "action_links"
 
   s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 end
