@@ -58,7 +58,7 @@ module ActionLinks
     end
     
     def wrapper_tag(&block)
-      content_tag(options[:list_wrapper], :class=>:actions) do
+      content_tag(options[:list_wrapper], :class=>options[:list_wrapper_class]) do
         yield
       end
     end

@@ -16,12 +16,11 @@ module ActionLinks
       
       links.compact!
       
-      content_tag(list.options[:list_wrapper], :class=>:actions) do
+      content_tag(list.options[:list_wrapper], :class=>list.options[:list_wrapper_class]) do
         links.map{ |link|
           content_tag(list.options[:link_wrapper], link, :class=>list.options[:link_wrapper_class])
         }.join("\n").html_safe
       end
     end
-    
   end
 end
