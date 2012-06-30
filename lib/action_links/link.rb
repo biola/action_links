@@ -49,7 +49,7 @@ module ActionLinks
       @html_options[:remote] = true if remote?
       
       if action == :destroy
-        @html_options.merge! :method=>:delete, :confirm=>I18n.t(:confirm_delete, :scope=>'action_links', :default=>'Are you sure?')
+        @html_options.merge! :method=>:delete, :data=>{ :confirm=>I18n.t(:confirm_delete, :scope=>'action_links', :default=>'Are you sure?') }
       end
 
       @html_options
