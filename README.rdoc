@@ -16,25 +16,39 @@ From the command line
   > bundle install
 
 
+== Configuration
+
+Configuration is optional. Everything will work out of the box.
+
+    ActionLinks.configure do |config|
+      config.bootstrap_action_classes = { :show => 'btn', :edit => 'btn', :destroy => 'btn btn-danger' }
+      config.bootstrap_action_icons = { :show => 'icon-eye-open', :edit => 'icon-pencil', :destroy => 'icon-remove icon-white' }
+    end
+
 == Usage
 
 * Basic Usage
 
-    =action_links @user
+    action_links @user
 
 * Include actions
   
-    =action_links @user, :include => [:download]
+    action_links @user, :include => [:download]
   
 * Exclude actions
 
-    =action_links @user, :exclude => [:edit, :destroy]
+    action_links @user, :exclude => [:edit, :destroy]
 
 * Pass in block
 
-    =action_links @user do
-      =link_to "Hello World", dashboard_path
+    action_links @user do
+      link_to "Hello World", dashboard_path
+    end
+
+* Bootstrap buttons. See configuration to customize button types and icons.
+
+    bootstrap_action_links @user
     
 * Namespaced objects
 
-    =action_links [:manage, @product]
+    action_links [:manage, @product]
