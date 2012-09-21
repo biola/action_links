@@ -34,7 +34,7 @@ module ActionLinks
       nil
     end
 
-    def bootstrap_action_links(object_or_array, options = {})
+    def bootstrap_action_links(object_or_array, options = {}, &block)
       css_classes = options[:bootstrap_action_classes] || ActionLinks.config.bootstrap_action_classes
       icons = options[:bootstrap_action_icons] || ActionLinks.config.bootstrap_action_icons
 
@@ -50,6 +50,8 @@ module ActionLinks
         end
       end
 
+      links << capture(&block) if block_given?
+      
       links.join("\n").html_safe
     end
 
