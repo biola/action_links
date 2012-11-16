@@ -21,7 +21,21 @@ module ActionLinks
     end
 
     def action_link(action, object_or_array, options = {})
-      ActionLinks::Link.new(action, object_or_array, options = {})
+      link = ActionLinks::Link.new(action, object_or_array, options)
+      
+      link_url_or_array = options[:url] || link.url_array
+
+      if allowed_to_visit?(link) && (!current_page?(link_url_or_array) || link.destroy?) # Check user permissions on action
+        title = link.icon ? content_tag(:i, '', :class => "icon-#{link.icon}") + " " + link.title : link.title # append icon to title if it exists  
+
+        html_link = link_to(title, link_url_or_array, link.html_options) 
+
+        if options[:link_wrapper]
+          content_tag(options[:link_wrapper], html_link, :class=>options[:link_wrapper_class])
+        else
+          html_link  # Return plain link if wrapper is not specified
+        end
+      end
     end
 
     def action_link_builder(object_or_array, options = {}, &block)

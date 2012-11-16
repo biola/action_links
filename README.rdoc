@@ -52,3 +52,9 @@ Configuration is optional. Everything will work out of the box.
 * Namespaced objects
 
     action_links [:manage, @product]
+
+* Return just the link with optional parameters
+
+    =action_link :edit, @event
+    // or more advanced
+    =action_link :clone, @event, link_wrapper: :li, url: url_for([:clone, @event]), icon: 'copy', text: 'Copy'

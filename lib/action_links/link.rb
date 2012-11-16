@@ -17,9 +17,19 @@ module ActionLinks
     def object_name
       @object_name ||= object.class.model_name.human
     end
+
+    def icon
+      @icon ||= Proc.new {
+        if options.include? :icon # You have to do it this was to allow support of passing nil to :icon, without it getting overridden by ActionLinks.config
+          options[:icon]
+        else
+          ActionLinks.config.action_icons[action] || nil
+        end
+      }.call
+    end
     
     def title
-      @title ||= I18n.t(action, :scope=>'action_links', :default=>action.to_s.humanize)
+      @title ||= options[:text] || I18n.t(action, :scope=>'action_links', :default=>action.to_s.humanize)
     end
     
     def url_array
@@ -39,13 +49,13 @@ module ActionLinks
     end
     
     def remote?
-      options[:remote].include? action
+      options[:remote].include? action if options[:remote]
     end
     
     def html_options
       return @html_options unless @html_options.nil?
       
-      @html_options = { :class=>action.to_s.parameterize, :title=>"#{title} #{object_name}" }
+      @html_options = { :class=>"#{action.to_s.parameterize} #{options[:class]}", :title=>"#{title} #{object_name}" }
       @html_options[:remote] = true if remote?
       
       if action == :destroy
