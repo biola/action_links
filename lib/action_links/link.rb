@@ -62,6 +62,8 @@ module ActionLinks
         @html_options.merge! :method=>:delete, :data=>{ :confirm=>I18n.t(:confirm_delete, :scope=>'action_links', :default=>'Are you sure?') }
       end
 
+      @html_options.merge! options[:html] if options[:html]
+
       @html_options
     end
     

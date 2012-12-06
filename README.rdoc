@@ -5,8 +5,6 @@ Action_Links automatically includes action links (show, edit, destroy) based on 
 
 == Installation
 
-Action_Links has been tested through Rails 3.0.10.
-
 Add the following to your Gemfile
  
   gem "action_links"
@@ -15,15 +13,19 @@ From the command line
 
   > bundle install
 
+Action Links is built to work with {Declarative Authorization}[https://github.com/stffn/declarative_authorization]
+
 
 == Configuration
 
 Configuration is optional. Everything will work out of the box.
 
     ActionLinks.configure do |config|
-      config.bootstrap_action_classes = { :show => 'btn', :edit => 'btn', :destroy => 'btn btn-danger' }
-      config.bootstrap_action_icons = { :show => 'icon-eye-open', :edit => 'icon-pencil', :destroy => 'icon-remove icon-white' }
+      @bootstrap_action_classes = { :show => 'btn', :edit => 'btn', :destroy => 'btn btn-danger' }
+      @bootstrap_action_icons = { :show => 'icon-eye-open', :edit => 'icon-pencil', :destroy => 'icon-remove icon-white' }
+      @action_icons = { :show => 'eye-open', :edit => 'pencil', :destroy => 'remove' }
     end
+
 
 == Usage
 
@@ -57,4 +59,11 @@ Configuration is optional. Everything will work out of the box.
 
     =action_link :edit, @event
     // or more advanced
-    =action_link :clone, @event, link_wrapper: :li, url: url_for([:clone, @event]), icon: 'copy', text: 'Copy'
+    =action_link :clone, @event, link_wrapper: :li, url: url_for([:clone, @event]), icon: 'copy', text: 'Copy', class: 'btn'
+
+* You can even pass in custom attributes with the :html tag
+    
+    =action_link :clone, @event, class: 'btn', html: { id: 'super_cool_clone_button' }
+    // NOTE: if you define 'class' in the :html hash, it will overwrite the default class,
+    //       otherwise you can define class outside of the :html hash like in the above example 
+    //       and it will be added to the default value.
