@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/biola/action_links"
   s.summary     = %q{Quick and painless action links}
   s.description = %q{Automatically includes action links (show, edit, destroy) based on the current page and user roles/permissions}
+  s.license     = 'MIT'
 
   s.rubyforge_project = "action_links"
 
